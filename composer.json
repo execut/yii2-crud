@@ -1,0 +1,20 @@
+{
+  "name": "execut/yii2-crud",
+  "description": "Yii2 object for fasted configuration CRUD navigation and actions for models",
+  "keywords": ["yii2", "crud"],
+  "homepage": "https://github.com/execut/yii2-crud",
+  "type": "library",
+  "license": "Apache-2.0",
+  "support": {
+    "issues": "https://github.com/execut/yii2-crud/issues?state=open",
+    "wiki": "https://github.com/execut/yii2-crud/wiki",
+    "source": "https://github.com/execut/yii2-crud"
+  },
+  "minimum-stability": "stable",
+  "require": {
+    "php": ">=5.4.0",
+    "yiisoft/yii2": "~2.0.6",
+    "execut/yii2-navigation": "*",
+    "execut/yii2-actions": "*"
+  }
+}
