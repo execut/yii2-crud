@@ -12,9 +12,13 @@
   },
   "minimum-stability": "stable",
   "require": {
-    "php": ">=5.4.0",
     "yiisoft/yii2": "~2.0.6",
     "execut/yii2-navigation": "*",
     "execut/yii2-actions": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "execut\\crud\\": ""
+    }
   }
 }
