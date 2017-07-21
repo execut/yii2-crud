@@ -5,6 +5,7 @@
 namespace execut\crud\navigation;
 
 
+use execut\crud\Translator;
 use execut\navigation\Component;
 use execut\navigation\Configurator as ConfiguratorInterface;
 use execut\navigation\page\Home;
@@ -20,13 +21,13 @@ class Configurator implements ConfiguratorInterface
     {
         $url = '/' . $this->module . '/' . $this->controller;
         $navigation->addMenuItem([
-            'label' => $this->moduleName,
+            'label' => $this->getTranslator()->getModuleLabel(),
             'url' => [
                 '/' . $this->module,
             ],
             'items' => [
                 [
-                    'label' => $this->getManyModelName(),
+                    'label' => $this->getTranslator()->getManyModelName(32),
                     'url' => [
                         $url,
                     ],
@@ -48,7 +49,7 @@ class Configurator implements ConfiguratorInterface
                 'class' => Home::class
             ],
             [
-                'name' => $this->modelName,
+                'name' => $this->getTranslator()->getManyModelName(32),
                 'url' => [
                     $url,
                 ],
@@ -58,10 +59,11 @@ class Configurator implements ConfiguratorInterface
         if ($action->id === 'update') {
             $model = $action->adapter->model;
             if ($model->isNewRecord) {
-                $name = 'Create ' . lcfirst($this->modelName);
+                $name = $this->getTranslator()->getCreateLabel();
             } else {
-                $name = 'Update ' . $model->name;
+                $name = $this->getTranslator()->getUpdateLabel();
             }
+
             $pages[] = [
                 'name' => $name,
             ];
@@ -72,10 +74,6 @@ class Configurator implements ConfiguratorInterface
         }
     }
 
-    public function getManyModelName() {
-        return Inflector::pluralize($this->modelName);
-    }
-
     /**
      * @return string
      */
@@ -83,5 +81,13 @@ class Configurator implements ConfiguratorInterface
     {
         $currentModule = \Yii::$app->controller->module->id;
         return $currentModule;
+    }
+
+    public function getTranslator() {
+        return new Translator([
+            'module' => $this->module,
+            'modelName' => $this->modelName,
+            'moduleName' => $this->moduleName,
+        ]);
     }
 }
