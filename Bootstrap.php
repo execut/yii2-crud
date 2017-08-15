@@ -8,11 +8,19 @@
 
 namespace execut\crud;
 
-
-use yii\base\BootstrapInterface;
-
-class Bootstrap implements BootstrapInterface
+class Bootstrap extends \execut\yii\Bootstrap
 {
+    public function getDefaultDepends()
+    {
+        return [
+            'bootstrap' => [
+                'yii2-actions' => [
+                    'class' => \execut\actions\Bootstrap::class,
+                ],
+            ],
+        ];
+    }
+
     public function bootstrap($app)
     {
         $this->registerTranslations($app);

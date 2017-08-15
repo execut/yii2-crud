@@ -13,6 +13,7 @@
   "minimum-stability": "stable",
   "require": {
     "yiisoft/yii2": "~2.0.6",
+    "execut/yii2-base": "*",
     "execut/yii2-navigation": "*",
     "execut/yii2-actions": "*"
   },
