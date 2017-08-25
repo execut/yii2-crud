@@ -12,6 +12,8 @@ namespace execut\crud;
 use execut\actions\Action;
 use execut\actions\action\adapter\Edit;
 use execut\actions\action\adapter\EditWithRelations;
+use yii\base\Exception;
+use yii\base\InvalidConfigException;
 use yii\base\Object;
 use yii\helpers\Inflector;
 
@@ -24,10 +26,10 @@ class Translator extends Object
      * @param $moduleName
      * @return string
      */
-    protected function moduleTranslate($message, $params = ['n' => 1]): string
+    protected function moduleTranslate($message, $params = ['n' => 1])
     {
         $category = 'modules/' . $this->module . '/';
-        $result = \yii::t($category, $message, $params);
+        $result = $this->translate($message, $params, $category);
 
         return $result;
     }
@@ -39,7 +41,7 @@ class Translator extends Object
     protected function crudTranslate($message, $params = []): string
     {
         $category = 'execut/crud/';
-        $result = \yii::t($category, $message, $params);
+        $result = $this->translate($message, $params, $category);
 
         return $result;
     }
@@ -84,5 +86,22 @@ class Translator extends Object
 
     public function getModuleLabel() {
         return $this->moduleTranslate($this->moduleName);
+    }
+
+    /**
+     * @param $message
+     * @param $params
+     * @param $category
+     * @return string
+     */
+    protected function translate($message, $params, $category)
+    {
+        try {
+            $result = \yii::t($category, $message, $params);
+        } catch (InvalidConfigException $e) {
+            $result = $message;
+        }
+
+        return $result;
     }
 }
