@@ -28,7 +28,7 @@ class Translator extends Object
      */
     protected function moduleTranslate($message, $params = ['n' => 1])
     {
-        $category = 'modules/' . $this->module . '/';
+        $category = 'execut/' . $this->module;
         $result = $this->translate($message, $params, $category);
 
         return $result;
@@ -58,7 +58,7 @@ class Translator extends Object
     }
 
     public function getCreateLabel() {
-        return $this->crudTranslate('Create') . ' ' . $this->lcfirst($this->getModelLabel(21));
+        return $this->crudTranslate('Create') . ' ' . $this->lcfirst($this->getModelLabel(1));
     }
 
     public function getUpdateLabel() {
@@ -67,7 +67,7 @@ class Translator extends Object
             $title = $this->moduleTranslate($title);
         }
 
-        return $this->crudTranslate('Update') . ' ' . $this->lcfirst($this->getModelLabel(21)) . ' ' . $title;
+        return $this->crudTranslate('Update') . ' ' . $this->lcfirst($this->getModelLabel(1)) . ' ' . $title;
     }
 
     public function getModelTitle() {
@@ -96,11 +96,7 @@ class Translator extends Object
      */
     protected function translate($message, $params, $category)
     {
-        try {
-            $result = \yii::t($category, $message, $params);
-        } catch (InvalidConfigException $e) {
-            $result = $message;
-        }
+        $result = \yii::t($category, $message, $params);
 
         return $result;
     }
