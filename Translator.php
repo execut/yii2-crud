@@ -28,7 +28,7 @@ class Translator extends Object
      */
     protected function moduleTranslate($message, $params = ['n' => 1])
     {
-        $category = 'modules/' . $this->module;
+        $category = 'modules/' . $this->module . '/';
         $result = $this->translate($message, $params, $category);
 
         return $result;
