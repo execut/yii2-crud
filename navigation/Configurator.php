@@ -46,9 +46,6 @@ class Configurator implements ConfiguratorInterface
         }
         $pages = [
             [
-                'class' => Home::class
-            ],
-            [
                 'name' => $this->getTranslator()->getManyModelName(32),
                 'url' => [
                     $url,
