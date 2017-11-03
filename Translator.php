@@ -58,7 +58,7 @@ class Translator extends Object
     }
 
     public function getCreateLabel() {
-        return $this->crudTranslate('Create') . ' ' . $this->lcfirst($this->getModelLabel(1));
+        return $this->crudTranslate('New') . ' ' . $this->lcfirst($this->getModelLabel(1));
     }
 
     public function getUpdateLabel() {
@@ -67,7 +67,7 @@ class Translator extends Object
             $title = $this->moduleTranslate($title);
         }
 
-        return $this->crudTranslate('Update') . ' ' . $this->lcfirst($this->getModelLabel(1)) . ' ' . $title;
+        return $this->getModelLabel(1) . ' ' . $title;
     }
 
     public function getModelTitle() {

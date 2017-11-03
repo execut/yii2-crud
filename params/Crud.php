@@ -13,16 +13,67 @@ use execut\actions\action\adapter\GridView;
 use execut\crud\Translator;
 use execut\crudFields\fields\Field;
 use kartik\detail\DetailView;
+use yii\base\BaseObject;
 use yii\base\Object;
 use yii\helpers\ArrayHelper;
+use yii\helpers\UnsetArrayValue;
 
-class Crud extends Object
+class Crud extends BaseObject
 {
     public $modelClass = null;
     public $module = null;
     public $moduleName = null;
     public $modelName = null;
     public $relations = [];
+    public $role = null;
+    public $rolesConfig = [];
+    public function getDefaultRolesConfig() {
+        return [
+            'user' => [
+                'index' => [
+                    'adapter' => [
+                        'view' => [
+                            'widget' => [
+                                'gridOptions' => [
+                                    'toolbar' => [
+                                        'massEdit' => new UnsetArrayValue(),
+                                        'massVisible' => new UnsetArrayValue(),
+                                        'dynaParams' => new UnsetArrayValue(),
+                                        'toggleData' => new UnsetArrayValue(),
+                                        'export' => new UnsetArrayValue(),
+                                        'refresh' => new UnsetArrayValue(),
+                                    ],
+                                    'layout' => '{toolbar}<br><br>{items}',
+                                    'filterPosition' => '123',
+                                ],
+                            ],
+                        ],
+                    ],
+                ],
+                'update' => [
+                    'adapter' => [
+                        'view' => [
+                            'buttonsTemplate' => '{save}&nbsp;&nbsp;{cancel}',
+                        ],
+                    ],
+                ],
+            ],
+        ];
+    }
+
+    public function getRolesConfig() {
+        return ArrayHelper::merge($this->getDefaultRolesConfig(), $this->rolesConfig);
+    }
+
+    public function getRoleConfig() {
+        $config = $this->getRolesConfig();
+        if (isset($config[$this->role])) {
+            return $config[$this->role];
+        }
+
+        return [];
+    }
+
     public function actions()
     {
         if (empty($this->relations)) {
@@ -33,7 +84,7 @@ class Crud extends Object
 
         $listAdapterParams = $this->getListAdapterParams();
 
-        return [
+        return ArrayHelper::merge([
             'index' => [
                 'class' => Action::class,
                 'adapter' => $listAdapterParams,
@@ -49,7 +100,7 @@ class Crud extends Object
                     'modelClass' => $this->modelClass,
                 ],
             ],
-        ];
+        ], $this->getRoleConfig());
     }
 
     public function getTranslator($relation = null) {
