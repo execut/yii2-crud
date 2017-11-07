@@ -61,12 +61,17 @@ class Crud extends BaseObject
         ];
     }
 
-    public function getRolesConfig() {
-        return ArrayHelper::merge($this->getDefaultRolesConfig(), $this->rolesConfig);
+    public function getDefaultRoleConfig() {
+        $config = $this->getDefaultRolesConfig();
+        if (isset($config[$this->role])) {
+            return $config[$this->role];
+        }
+
+        return [];
     }
 
     public function getRoleConfig() {
-        $config = $this->getRolesConfig();
+        $config = $this->rolesConfig;
         if (isset($config[$this->role])) {
             return $config[$this->role];
         }
@@ -84,7 +89,7 @@ class Crud extends BaseObject
 
         $listAdapterParams = $this->getListAdapterParams();
 
-        return ArrayHelper::merge([
+        $result = ArrayHelper::merge(ArrayHelper::merge([
             'index' => [
                 'class' => Action::class,
                 'adapter' => $listAdapterParams,
@@ -100,7 +105,9 @@ class Crud extends BaseObject
                     'modelClass' => $this->modelClass,
                 ],
             ],
-        ], $this->getRoleConfig());
+        ], $this->getDefaultRoleConfig()), $this->getRoleConfig());
+
+        return $result;
     }
 
     public function getTranslator($relation = null) {
