@@ -12,12 +12,12 @@ namespace execut\crud;
 use execut\actions\Action;
 use execut\actions\action\adapter\Edit;
 use execut\actions\action\adapter\EditWithRelations;
+use yii\base\BaseObject;
 use yii\base\Exception;
 use yii\base\InvalidConfigException;
-use yii\base\Object;
 use yii\helpers\Inflector;
 
-class Translator extends Object
+class Translator extends BaseObject
 {
     public $module = null;
     public $modelName = null;

@@ -14,7 +14,6 @@ use execut\crud\Translator;
 use execut\crudFields\fields\Field;
 use kartik\detail\DetailView;
 use yii\base\BaseObject;
-use yii\base\Object;
 use yii\helpers\ArrayHelper;
 use yii\helpers\UnsetArrayValue;
 
