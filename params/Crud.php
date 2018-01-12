@@ -32,6 +32,7 @@ class Crud extends BaseObject
                 'index' => [
                     'adapter' => [
                         'view' => [
+                            'title' => $this->getTranslator()->getModelLabel(1),
                             'widget' => [
                                 'gridOptions' => [
                                     'toolbar' => [
