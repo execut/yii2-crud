@@ -165,9 +165,9 @@ class Crud extends BaseObject
         $listAdapterParams = [
             'class' => GridView::class,
             'scenario' => Field::SCENARIO_GRID,
-            'view' => [
-                'title' => $this->getTranslator($relation)->getModelLabel(1),
-            ],
+//            'view' => [
+//                'title' => $this->getTranslator($relation)->getModelLabel(1),
+//            ],
         ];
 
         if ($relation === null) {
