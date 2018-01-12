@@ -166,7 +166,7 @@ class Crud extends BaseObject
             'class' => GridView::class,
             'scenario' => Field::SCENARIO_GRID,
             'view' => [
-                'title' => $this->getTranslator($relation)->getManyModelName(0),
+                'title' => $this->getTranslator($relation)->getModelLabel(1),
             ],
         ];
 
