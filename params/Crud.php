@@ -43,7 +43,7 @@ class Crud extends BaseObject
                                         'export' => new UnsetArrayValue(),
                                         'refresh' => new UnsetArrayValue(),
                                     ],
-                                    'layout' => '{toolbar}<br><br>{items}',
+                                    'layout' => '{alertBlock}{toolbar}<br><br>{items}',
                                     'filterPosition' => '123',
                                 ],
                             ],
