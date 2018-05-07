@@ -53,7 +53,7 @@ class User extends ActiveRecord
     {
         $crud = new Crud([
             'modelClass' => \execut\users\models\User::class,
-            'title' => 'Pages',
+            'modelName' => 'Pages',
         ]);
         return $crud->actions();
     }

@@ -28,6 +28,10 @@ class Translator extends BaseObject
      */
     protected function moduleTranslate($message, $params = ['n' => 1])
     {
+        if ($this->module === null) {
+            return $message;
+        }
+
         $category = 'execut/' . $this->module;
         $result = $this->translate($message, $params, $category);
 
