@@ -43,7 +43,7 @@ class Crud extends BaseObject
                                         'export' => new UnsetArrayValue(),
                                         'refresh' => new UnsetArrayValue(),
                                     ],
-                                    'layout' => '{alertBlock}{toolbar}<br><br>{items}',
+                                    'layout' => '{alertBlock}<div class="dyna-grid-footer">{summary}{pager}<div class="dyna-grid-toolbar">{toolbar}</div></div>{items}',
                                     'filterPosition' => '123',
                                 ],
                             ],
