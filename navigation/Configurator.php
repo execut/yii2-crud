@@ -9,6 +9,7 @@ use execut\crud\Translator;
 use execut\navigation\Component;
 use execut\navigation\Configurator as ConfiguratorInterface;
 use execut\navigation\page\Home;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Inflector;
 
 class Configurator implements ConfiguratorInterface
@@ -17,6 +18,7 @@ class Configurator implements ConfiguratorInterface
     public $moduleName = null;
     public $modelName = null;
     public $controller = null;
+    public $pages = [];
     public function configure(Component $navigation)
     {
         $url = '/' . $this->module . '/' . $this->controller;
@@ -45,7 +47,7 @@ class Configurator implements ConfiguratorInterface
             return;
         }
         $pages = [
-            [
+            'index' => [
                 'name' => $this->getTranslator()->getManyModelName(32),
                 'url' => [
                     $url,
@@ -61,11 +63,12 @@ class Configurator implements ConfiguratorInterface
                 $name = $this->getTranslator()->getUpdateLabel();
             }
 
-            $pages[] = [
+            $pages['update'] = [
                 'name' => $name,
             ];
         }
 
+        $pages = ArrayHelper::merge($this->pages, $pages);
         foreach ($pages as $page) {
             $navigation->addPage($page);
         }
