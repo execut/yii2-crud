@@ -79,7 +79,7 @@ class Crud extends BaseObject
         return [];
     }
 
-    public function actions()
+    public function actions($mergedActions = [])
     {
         if (empty($this->relations)) {
             $updateAdapterParams = $this->getUpdateAdapterParams();
@@ -89,7 +89,7 @@ class Crud extends BaseObject
 
         $listAdapterParams = $this->getListAdapterParams();
 
-        $result = ArrayHelper::merge(ArrayHelper::merge([
+        $result = ArrayHelper::merge(ArrayHelper::merge(ArrayHelper::merge([
             'index' => [
                 'class' => Action::class,
                 'adapter' => $listAdapterParams,
@@ -105,7 +105,7 @@ class Crud extends BaseObject
                     'modelClass' => $this->modelClass,
                 ],
             ],
-        ], $this->getDefaultRoleConfig()), $this->getRoleConfig());
+        ], $this->getDefaultRoleConfig()), $this->getRoleConfig()), $mergedActions);
 
         return $result;
     }

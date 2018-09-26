@@ -38,12 +38,12 @@ class Configurator implements ConfiguratorInterface
         ]);
 
         $currentModule = $this->getCurrentModule();
-        if ($currentModule !== $this->module) {
+        if (!$currentModule || $currentModule !== $this->module) {
             return;
         }
 
         $controller = \yii::$app->controller;
-        if ($controller->id !== $this->controller) {
+        if (!$controller || $controller->id !== $this->controller) {
             return;
         }
         $pages = [
@@ -79,6 +79,10 @@ class Configurator implements ConfiguratorInterface
      */
     protected function getCurrentModule()
     {
+        if (!\Yii::$app->controller || !\Yii::$app->controller->module) {
+            return;
+        }
+
         $currentModule = \Yii::$app->controller->module->id;
         return $currentModule;
     }

@@ -89,7 +89,7 @@ class Translator extends BaseObject
     }
 
     public function getModuleLabel() {
-        return $this->moduleTranslate($this->moduleName);
+        return $this->moduleTranslate($this->moduleName, ['n' => 31]);
     }
 
     /**
