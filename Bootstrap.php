@@ -23,6 +23,7 @@ class Bootstrap extends \execut\yii\Bootstrap
 
     public function bootstrap($app)
     {
+        parent::bootstrap($app);
         $this->registerTranslations($app);
     }
 
