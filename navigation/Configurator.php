@@ -21,7 +21,7 @@ class Configurator implements ConfiguratorInterface
     public $pages = [];
     public function configure(Component $navigation)
     {
-        $url = '/' . $this->module . '/' . $this->controller;
+        $url = '/' . $this->module . '/' . $this->controller . '/index';
         $navigation->addMenuItem([
             'label' => $this->getTranslator()->getModuleLabel(),
             'url' => [
