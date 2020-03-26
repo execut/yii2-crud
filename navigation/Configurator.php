@@ -18,24 +18,27 @@ class Configurator implements ConfiguratorInterface
     public $moduleName = null;
     public $modelName = null;
     public $controller = null;
+    public $isAddMenuItems = true;
     public $pages = [];
     public function configure(Component $navigation)
     {
         $url = '/' . $this->module . '/' . $this->controller . '/index';
-        $navigation->addMenuItem([
-            'label' => $this->getTranslator()->getModuleLabel(),
-            'url' => [
-                '/' . $this->module,
-            ],
-            'items' => [
-                [
-                    'label' => $this->getTranslator()->getManyModelName(32),
-                    'url' => [
-                        $url,
-                    ],
+        if ($this->isAddMenuItems) {
+            $navigation->addMenuItem([
+                'label' => $this->getTranslator()->getModuleLabel(),
+                'url' => [
+                    '/' . $this->module,
                 ],
-            ]
-        ]);
+                'items' => [
+                    [
+                        'label' => $this->getTranslator()->getManyModelName(32),
+                        'url' => [
+                            $url,
+                        ],
+                    ],
+                ]
+            ]);
+        }
 
         $currentModule = $this->getCurrentModule();
         if (!$currentModule || $currentModule !== $this->module) {
