@@ -1,6 +1,6 @@
 {
   "name": "execut/yii2-crud",
-  "description": "Yii2 object for fasted configuration CRUD navigation and actions for models",
+  "description": "Yii2 object for fasted configuration CRUD navigation and actions for models without copy-paste or CRUD generators",
   "keywords": ["yii2", "crud"],
   "homepage": "https://github.com/execut/yii2-crud",
   "type": "library",
