@@ -1,5 +1,5 @@
 # Yii2 CRUD
-It's package for simple creating CRUD for model from configuring navigation to required controller actions in 3 steps
+It's package for simple creating CRUD from configuring navigation to required controller actions in 3 steps
 without copy-paste or CRUD generators. 
 
 ## Installation
