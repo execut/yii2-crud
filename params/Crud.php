@@ -11,7 +11,6 @@ use execut\actions\action\adapter\Edit;
 use execut\actions\action\adapter\EditWithRelations;
 use execut\actions\action\adapter\GridView;
 use execut\crud\Translator;
-use execut\crudFields\fields\Field;
 use kartik\detail\DetailView;
 use yii\base\BaseObject;
 use yii\helpers\ArrayHelper;
@@ -133,7 +132,7 @@ class Crud extends BaseObject
             'class' => Edit::class,
             'mode' => DetailView::MODE_EDIT,
             'modelClass' => $this->modelClass,
-            'scenario' => Field::SCENARIO_FORM,
+            'scenario' => 'form',
             'editFormLabel' => function () {
                 return $this->getTranslator()->getUpdateLabel();
             },
@@ -164,7 +163,7 @@ class Crud extends BaseObject
     {
         $listAdapterParams = [
             'class' => GridView::class,
-            'scenario' => Field::SCENARIO_GRID,
+            'scenario' => 'grid',
 //            'view' => [
 //                'title' => $this->getTranslator($relation)->getModelLabel(1),
 //            ],
