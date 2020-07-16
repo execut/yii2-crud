@@ -22,6 +22,17 @@ or add
 
 to the ```require``` section of your `composer.json` file.
 
+Add bootstrap to your application config:
+```php
+return [
+    'bootstrap' => [
+        'yii2-crud' => [
+            'class' => \execut\crud\Bootstrap::class,
+        ]
+    ]
+];
+```
+
 ## Usage
 
 [Read wiki](https://github.com/execut/yii2-crud/wiki)
