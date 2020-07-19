@@ -13,6 +13,8 @@ class Backend extends Bootstrap
     public $adminRole = null;
     public $moduleId = null;
     public $module = null;
+    protected $_defaultDepends = [];
+
     /**
      * @var Bootstrapper
      */
@@ -43,6 +45,10 @@ class Backend extends Bootstrap
         return $this->navigation;
     }
 
+    /**
+     * @return \yii\web\User
+     * @throws \yii\base\InvalidConfigException
+     */
     public function getUser() {
         if ($this->user === null) {
             $application = \yii::$app;
@@ -78,8 +84,30 @@ class Backend extends Bootstrap
     {
         parent::bootstrap($app);
         $bootstrapper = $this->getBootstrapper();
-        if ($this->getUser()->can($this->getAdminRole())) {
+        if ($this->isUserCan()) {
             $bootstrapper->bootstrapForAdmin($this->getNavigation());
+        }
+    }
+
+    /**
+     * @return bool
+     * @throws \yii\base\InvalidConfigException
+     */
+    protected function isUserCan(): bool
+    {
+        $user = $this->getUser();
+        $adminRole = $this->getAdminRole();
+        if (!$user) {
+            return false;
+        }
+        if ($adminRole === '@') {
+            if (!$user->getIsGuest()) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return $user->can($adminRole);
         }
     }
 }
