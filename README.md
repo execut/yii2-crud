@@ -35,4 +35,4 @@ return [
 
 ## Usage
 
-[Read wiki](https://github.com/execut/yii2-crud/wiki)
+[Read readme](https://github.com/execut/yii2-crud/blob/master/docs/guide/README.md)
