@@ -7,27 +7,49 @@
  */
 namespace execut\crud\bootstrap;
 
+use execut\navigation\Component;
 use execut\yii\Bootstrap;
+use yii\base\InvalidConfigException as InvalidConfigException;
+use yii\filters\AccessRule;
+use yii\web\User;
+use \yii\base\Module as ModuleBase;
 
 /**
- * Class Backend
+ * Bootstrap for CRUDs. Initialized CRUD via it bootstrapper
  * @package execut\crud
  */
 class Backend extends Bootstrap
 {
+    /**
+     * @var Component Navigation component instance
+     */
     public $navigation = null;
+    /**
+     * @var User User application component instance
+     */
     public $user = null;
+    /**
+     * @var string A role that has access to CRUD
+     * @see AccessRule::$roles
+     */
     public $adminRole = null;
+    /**
+     * @var string Module id of CRUD
+     */
     public $moduleId = null;
+    /**
+     * @var ModuleBase Module instance of CRUD
+     */
     public $module = null;
-    protected $_defaultDepends = [];
 
     /**
-     * @var Bootstrapper
+     * @var Bootstrapper Bootstrapper for CRUD
+     * @see Bootstrapper
      */
     protected $bootstrapper = null;
 
     /**
+     * Sets bootstrapper instance for CRUD
      * @param Bootstrapper $bootstrapper
      */
     public function setBootstrapper(Bootstrapper $bootstrapper): void
@@ -36,6 +58,7 @@ class Backend extends Bootstrap
     }
 
     /**
+     * Returns bootstrapper
      * @return Bootstrapper
      */
     public function getBootstrapper(): Bootstrapper
@@ -43,32 +66,51 @@ class Backend extends Bootstrap
         return $this->bootstrapper;
     }
 
+    /**
+     * Returns the navigation component. Gets from the application by default
+     * @return Component
+     * @throws InvalidConfigException
+     */
     public function getNavigation()
     {
         $application = \yii::$app;
         if ($application->has('navigation')) {
-            return $application->get('navigation');
+            /**
+             * @var Component $navigation
+             */
+            $navigation = $application->get('navigation');
+            return $navigation;
         }
 
         return $this->navigation;
     }
 
     /**
-     * @return \yii\web\User
-     * @throws \yii\base\InvalidConfigException
+     * Returns the navigation component. Gets from the application by default
+     * @return User
+     * @throws InvalidConfigException
      */
     public function getUser()
     {
         if ($this->user === null) {
             $application = \yii::$app;
             if ($application->has('user')) {
-                return $application->get('user');
+                /**
+                 * @var User $user
+                 */
+                $user = $application->get('user');
+                return $user;
             }
         }
 
         return $this->user;
     }
 
+    /**
+     * Returns role string that has access to CRUD
+     * @return string
+     * @see AccessRule::$roles
+     */
     public function getAdminRole()
     {
         if ($this->adminRole === null) {
@@ -78,20 +120,32 @@ class Backend extends Bootstrap
         return $this->adminRole;
     }
 
+    /**
+     * Gets module id of CRUD
+     * @return string
+     */
     public function getModuleId()
     {
         return $this->moduleId;
     }
 
+    /**
+     * Gets module instance of CRUD
+     * @return ModuleBase
+     */
     public function getModule(): Module
     {
         if ($this->module === null) {
-            return \yii::$app->getModule($this->getModuleId());
+            $module = \yii::$app->getModule($this->getModuleId());
+            return $module;
         }
 
         return $this->module;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function bootstrap($app)
     {
         parent::bootstrap($app);
@@ -102,8 +156,9 @@ class Backend extends Bootstrap
     }
 
     /**
+     * Checks what user is has access to CRUD
      * @return bool
-     * @throws \yii\base\InvalidConfigException
+     * @throws InvalidConfigException
      */
     protected function isUserCan(): bool
     {
