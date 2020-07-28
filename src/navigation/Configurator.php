@@ -1,17 +1,21 @@
 <?php
 /**
+ * @author Mamaev Yuriy (eXeCUT)
+ * @link https://github.com/execut
+ * @copyright Copyright (c) 2020 Mamaev Yuriy (eXeCUT)
+ * @license http://www.apache.org/licenses/LICENSE-2.0
  */
-
 namespace execut\crud\navigation;
-
 
 use execut\crud\Translator;
 use execut\navigation\Component;
 use execut\navigation\Configurator as ConfiguratorInterface;
-use execut\navigation\page\Home;
 use yii\helpers\ArrayHelper;
-use yii\helpers\Inflector;
 
+/**
+ * Class Configurator
+ * @package execut\crud\navigation
+ */
 class Configurator implements ConfiguratorInterface
 {
     public $module = null;
@@ -83,14 +87,15 @@ class Configurator implements ConfiguratorInterface
     protected function getCurrentModule()
     {
         if (!\Yii::$app->controller || !\Yii::$app->controller->module) {
-            return;
+            return null;
         }
 
         $currentModule = \Yii::$app->controller->module->id;
         return $currentModule;
     }
 
-    public function getTranslator() {
+    public function getTranslator()
+    {
         return new Translator([
             'module' => $this->module,
             'modelName' => $this->modelName,

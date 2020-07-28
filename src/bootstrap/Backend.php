@@ -1,11 +1,18 @@
 <?php
-
-
+/**
+ * @author Mamaev Yuriy (eXeCUT)
+ * @link https://github.com/execut
+ * @copyright Copyright (c) 2020 Mamaev Yuriy (eXeCUT)
+ * @license http://www.apache.org/licenses/LICENSE-2.0
+ */
 namespace execut\crud\bootstrap;
-
 
 use execut\yii\Bootstrap;
 
+/**
+ * Class Backend
+ * @package execut\crud
+ */
 class Backend extends Bootstrap
 {
     public $navigation = null;
@@ -36,7 +43,8 @@ class Backend extends Bootstrap
         return $this->bootstrapper;
     }
 
-    public function getNavigation() {
+    public function getNavigation()
+    {
         $application = \yii::$app;
         if ($application->has('navigation')) {
             return $application->get('navigation');
@@ -49,7 +57,8 @@ class Backend extends Bootstrap
      * @return \yii\web\User
      * @throws \yii\base\InvalidConfigException
      */
-    public function getUser() {
+    public function getUser()
+    {
         if ($this->user === null) {
             $application = \yii::$app;
             if ($application->has('user')) {
@@ -60,7 +69,8 @@ class Backend extends Bootstrap
         return $this->user;
     }
 
-    public function getAdminRole() {
+    public function getAdminRole()
+    {
         if ($this->adminRole === null) {
             return $this->getModule()->getAdminRole();
         }
@@ -68,11 +78,13 @@ class Backend extends Bootstrap
         return $this->adminRole;
     }
 
-    public function getModuleId() {
+    public function getModuleId()
+    {
         return $this->moduleId;
     }
 
-    public function getModule():Module {
+    public function getModule(): Module
+    {
         if ($this->module === null) {
             return \yii::$app->getModule($this->getModuleId());
         }

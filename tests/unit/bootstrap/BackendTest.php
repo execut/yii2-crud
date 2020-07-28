@@ -1,16 +1,27 @@
 <?php
-
-
-namespace execut\crud\bootstrap;
-
+/**
+ * @author Mamaev Yuriy (eXeCUT)
+ * @link https://github.com/execut
+ * @copyright Copyright (c) 2020 Mamaev Yuriy (eXeCUT)
+ * @license http://www.apache.org/licenses/LICENSE-2.0
+ */
+namespace execut\crud\tests\unit\bootstrap;
 
 use Codeception\Test\Unit;
+use execut\crud\bootstrap\Backend;
+use execut\crud\bootstrap\Bootstrapper;
+use execut\crud\bootstrap\Module;
 use execut\navigation\Component;
 use yii\web\User;
 
+/**
+ * Class BackendTest
+ * @package execut\crud\tests
+ */
 class BackendTest extends Unit
 {
-    public function testGetNavigationByDefault() {
+    public function testGetNavigationByDefault()
+    {
         $navigation = new Component();
         \yii::$app->set('navigation', $navigation);
         $bootstrap = new Backend();
@@ -18,7 +29,8 @@ class BackendTest extends Unit
         \yii::$app->set('navigation', null);
     }
 
-    public function testSetNavigationFromConstructor() {
+    public function testSetNavigationFromConstructor()
+    {
         $navigation = new Component();
         $bootstrap = new Backend([
             'navigation' => $navigation,
@@ -26,7 +38,8 @@ class BackendTest extends Unit
         $this->assertEquals($navigation, $bootstrap->getNavigation());
     }
 
-    public function testGetUserByDefault() {
+    public function testGetUserByDefault()
+    {
         $user = new User([
             'identityClass' => BackendTestUser::class
         ]);
@@ -36,7 +49,8 @@ class BackendTest extends Unit
         \yii::$app->set('user', null);
     }
 
-    public function testSetUserFromConstructor() {
+    public function testSetUserFromConstructor()
+    {
         $user = new User([
             'identityClass' => BackendTestUser::class
         ]);
@@ -46,7 +60,8 @@ class BackendTest extends Unit
         $this->assertEquals($user, $bootstrap->getUser());
     }
 
-    public function testGetModuleIdFromConstructor() {
+    public function testGetModuleIdFromConstructor()
+    {
         $moduleId = 'test-module';
         $bootstrap = new Backend([
             'moduleId' => $moduleId
@@ -54,7 +69,8 @@ class BackendTest extends Unit
         $this->assertEquals($moduleId, $bootstrap->getModuleId());
     }
 
-    public function testGetModuleFromConstructor() {
+    public function testGetModuleFromConstructor()
+    {
         $moduleId = 'module';
         $module = $this->getMockBuilder(BackendTestModule::class)->setConstructorArgs([$moduleId])->getMock();
         $bootstrap = new Backend([
@@ -63,7 +79,9 @@ class BackendTest extends Unit
         $this->assertEquals($module, $bootstrap->getModule());
     }
 
-    public function testGetModuleByDefault() {
+    public function testGetModuleByDefault(
+
+    ) {
         $moduleId = 'module';
         $module = $this->getMockBuilder(BackendTestModule::class)->setConstructorArgs([$moduleId])->getMock();
         \yii::$app->setModule($moduleId, $module);
@@ -74,7 +92,8 @@ class BackendTest extends Unit
         \yii::$app->setModule($moduleId, null);
     }
 
-    public function testGetAdminRoleByDefault() {
+    public function testGetAdminRoleByDefault()
+    {
         $role = 'test';
         $moduleId = 'module';
         $module = $this->getMockBuilder(BackendTestModule::class)->setConstructorArgs([$moduleId])->getMock();
@@ -90,7 +109,8 @@ class BackendTest extends Unit
         \yii::$app->setModule($moduleId, null);
     }
 
-    public function testSetAdminRoleFromConstructor() {
+    public function testSetAdminRoleFromConstructor()
+    {
         $role = 'test';
         $bootstrap = new Backend([
             'adminRole' => $role,
@@ -98,7 +118,8 @@ class BackendTest extends Unit
         $this->assertEquals($role, $bootstrap->getAdminRole());
     }
 
-    public function testBootstrapForSimpleUser() {
+    public function testBootstrapForSimpleUser()
+    {
         $bootstrapper = $this->getMockBuilder(Bootstrapper::class)->getMock();
         $bootstrapper->expects($this->never())
             ->method('bootstrapForAdmin');
@@ -117,7 +138,8 @@ class BackendTest extends Unit
         $bootstrap->bootstrap($app);
     }
 
-    public function testBootstrapForAdmin() {
+    public function testBootstrapForAdmin()
+    {
         $bootstrapper = $this->getMockBuilder(Bootstrapper::class)->getMock();
         $navigation = new Component();
         $bootstrapper->expects($this->once())
@@ -140,9 +162,11 @@ class BackendTest extends Unit
     }
 }
 
-class BackendTestUser extends User {
+class BackendTestUser extends User
+{
 }
 
-class BackendTestModule extends \yii\base\Module implements Module {
+class BackendTestModule extends \yii\base\Module implements Module
+{
     public function getAdminRole() {}
 }

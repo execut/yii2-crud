@@ -1,13 +1,11 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: execut
- * Date: 7/19/17
- * Time: 1:11 PM
+ * @author Mamaev Yuriy (eXeCUT)
+ * @link https://github.com/execut
+ * @copyright Copyright (c) 2020 Mamaev Yuriy (eXeCUT)
+ * @license http://www.apache.org/licenses/LICENSE-2.0
  */
-
 namespace execut\crud;
-
 
 use execut\actions\Action;
 use execut\actions\action\adapter\Edit;
@@ -17,6 +15,10 @@ use yii\base\Exception;
 use yii\base\InvalidConfigException;
 use yii\helpers\Inflector;
 
+/**
+ * Class Translator
+ * @package execut\crud
+ */
 class Translator extends BaseObject
 {
     public $module = null;
@@ -50,22 +52,25 @@ class Translator extends BaseObject
         return $result;
     }
 
-    protected function lcfirst($string, $encoding = "UTF-8")
+    protected function lcfirst($string, $encoding = 'UTF-8')
     {
         $first = mb_convert_case(mb_substr($string, 0, 1, $encoding), MB_CASE_LOWER, $encoding);
 
         return $first . mb_substr($string, 1, null, $encoding);
     }
 
-    public function getManyModelName($n = 22) {
+    public function getManyModelName($n = 22)
+    {
         return $this->moduleTranslate($this->modelName, ['n' => $n]);
     }
 
-    public function getCreateLabel() {
+    public function getCreateLabel()
+    {
         return $this->crudTranslate('New') . ' ' . $this->lcfirst($this->getModelLabel(1));
     }
 
-    public function getUpdateLabel() {
+    public function getUpdateLabel()
+    {
         $title = $this->getModelTitle();
         if ($title) {
             $title = $this->moduleTranslate($title);
@@ -74,7 +79,8 @@ class Translator extends BaseObject
         return $this->getModelLabel(1) . ' ' . $title;
     }
 
-    public function getModelTitle() {
+    public function getModelTitle()
+    {
         $controller = \yii::$app->controller;
         $action = $controller->action;
         if ($action instanceof Action && ($action->adapter instanceof Edit || $action->adapter instanceof EditWithRelations)) {
@@ -82,13 +88,17 @@ class Translator extends BaseObject
 
             return (string) $model;
         }
+
+        return null;
     }
 
-    public function getModelLabel($n) {
+    public function getModelLabel($n)
+    {
         return $this->moduleTranslate($this->modelName, ['n' => $n]);
     }
 
-    public function getModuleLabel() {
+    public function getModuleLabel()
+    {
         return $this->moduleTranslate($this->moduleName, ['n' => 31]);
     }
 

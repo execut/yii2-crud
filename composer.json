@@ -12,14 +12,22 @@
   },
   "minimum-stability": "stable",
   "require": {
-    "yiisoft/yii2": "~2.0.6",
+    "php": "^7.4",
+    "yiisoft/yii2": "2.*",
     "execut/yii2-base": "*",
     "execut/yii2-navigation": "*",
     "execut/yii2-actions": "*"
   },
+  "require-dev": {
+    "codeception/codeception": "^4.0",
+    "codeception/module-asserts": "^1.0",
+    "codeception/module-yii2": "^1.0",
+    "codeception/module-filesystem": "^1.0",
+    "codeception/verify": "~0.5.0 || ~1.1.0"
+  },
   "autoload": {
     "psr-4": {
-      "execut\\crud\\": ""
+      "execut\\crud\\": "src"
     }
   }
 }

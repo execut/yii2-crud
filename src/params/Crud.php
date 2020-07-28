@@ -1,9 +1,11 @@
 <?php
 /**
+ * @author Mamaev Yuriy (eXeCUT)
+ * @link https://github.com/execut
+ * @copyright Copyright (c) 2020 Mamaev Yuriy (eXeCUT)
+ * @license http://www.apache.org/licenses/LICENSE-2.0
  */
-
 namespace execut\crud\params;
-
 
 use execut\actions\Action;
 use execut\actions\action\adapter\Delete;
@@ -16,6 +18,10 @@ use yii\base\BaseObject;
 use yii\helpers\ArrayHelper;
 use yii\helpers\UnsetArrayValue;
 
+/**
+ * Class Crud
+ * @package execut\crud\params
+ */
 class Crud extends BaseObject
 {
     public $modelClass = null;
@@ -25,7 +31,8 @@ class Crud extends BaseObject
     public $relations = [];
     public $role = null;
     public $rolesConfig = [];
-    public function getDefaultRolesConfig() {
+    public function getDefaultRolesConfig()
+    {
         return [
             'user' => [
                 'index' => [
@@ -60,7 +67,8 @@ class Crud extends BaseObject
         ];
     }
 
-    public function getDefaultRoleConfig() {
+    public function getDefaultRoleConfig()
+    {
         $config = $this->getDefaultRolesConfig();
         if (isset($config[$this->role])) {
             return $config[$this->role];
@@ -69,7 +77,8 @@ class Crud extends BaseObject
         return [];
     }
 
-    public function getRoleConfig() {
+    public function getRoleConfig()
+    {
         $config = $this->rolesConfig;
         if (isset($config[$this->role])) {
             return $config[$this->role];
@@ -109,7 +118,8 @@ class Crud extends BaseObject
         return $result;
     }
 
-    public function getTranslator($relation = null) {
+    public function getTranslator($relation = null)
+    {
         $translatorParams = [
             'module' => $this->module,
             'modelName' => $this->modelName,
@@ -142,7 +152,8 @@ class Crud extends BaseObject
         return $updateActionParams;
     }
 
-    protected function getUpdateAdapterParamsWithRelations():array {
+    protected function getUpdateAdapterParamsWithRelations(): array
+    {
         $relations = $this->relations;
         $resultRelations = [];
         foreach ($relations as $relation => $translatorParams) {

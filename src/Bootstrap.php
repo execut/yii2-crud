@@ -1,13 +1,16 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: execut
- * Date: 7/19/17
- * Time: 12:45 PM
+ * @author Mamaev Yuriy (eXeCUT)
+ * @link https://github.com/execut
+ * @copyright Copyright (c) 2020 Mamaev Yuriy (eXeCUT)
+ * @license http://www.apache.org/licenses/LICENSE-2.0
  */
-
 namespace execut\crud;
 
+/**
+ * Class Bootstrap
+ * @package execut\crud
+ */
 class Bootstrap extends \execut\yii\Bootstrap
 {
     public function getDefaultDepends()
@@ -27,7 +30,8 @@ class Bootstrap extends \execut\yii\Bootstrap
         $this->registerTranslations($app);
     }
 
-    public function registerTranslations($app) {
+    public function registerTranslations($app)
+    {
         $app->i18n->translations['execut/crud/'] = [
             'class' => 'yii\i18n\PhpMessageSource',
             'sourceLanguage' => 'en-US',
