@@ -3,7 +3,7 @@
   "description": "Yii2 object for fasted configuration CRUD navigation and actions for models without copy-paste or CRUD generators",
   "keywords": ["yii2", "crud"],
   "homepage": "https://github.com/execut/yii2-crud",
-  "type": "library",
+  "type": "yii2-extension",
   "license": "Apache-2.0",
   "support": {
     "issues": "https://github.com/execut/yii2-crud/issues?state=open",
