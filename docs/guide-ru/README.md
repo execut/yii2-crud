@@ -1,9 +1,8 @@
-В качестве примера рассмотрим процесс создания CRUD-а книг и их авторов. Такой CRUD для сравнения уже реализован в
-нативном виде в данном пакете [execut/yii2-crud-native](https://github.com/execut/yii2-crud-native), а с использованием
-Yii2 CRUD в этом [execut/yii2-books](https://github.com/execut/yii2-books). Все примеры в дальнейшем будут ссылаться
-на них.
+В качестве примера рассмотрим процесс создания CRUD-а книг и их авторов.
+Такой CRUD для сравнения уже реализован в нативном виде в данном пакете [execut/yii2-crud-native](https://github.com/execut/yii2-crud-native), а с использованием Yii2 CRUD в этом [execut/yii2-books](https://github.com/execut/yii2-books).
+Все примеры в дальнейшем будут ссылаться на них.
 
-Список функционала реализованного в нативном CRUD-е приведён на [этой странице](https://github.com/execut/yii2-books-native/wiki/Реализованный-функционал).
+Список функционала реализованного в нативном CRUD-е приведён на [этой странице](https://github.com/execut/yii2-books-native/blob/master/docs/guide-ru/implemented-functionality.md).
 С помощью Yii2 CRUD мы можем автоматизировать создание следующих блоков из этого списка:
 * Навигация CRUD
 * Контроллер CRUD
@@ -164,7 +163,7 @@ class Bootstrapper implements \execut\crud\bootstrap\Bootstrapper
             'class' => Configurator::class,
             'module' => 'books',
             'moduleName' => 'СRUD fields examples',
-            'modelName' => 'Authors',
+            'modelName' => Author::MODEL_NAME,
             'controller' => 'authors',
         ]);
     }
@@ -191,10 +190,13 @@ class Backend extends \execut\crud\bootstrap\Backend
 }
 ```
 
-После этого в админке должно появиться меню с разделом:
+После этого в админке должно появиться меню с разделами:
 
-![Меню раздела](https://raw.githubusercontent.com/execut/yii2-crud/master/docs/i/books-menu.jpg)
+![Меню раздела](https://raw.githubusercontent.com/execut/yii2-crud/master/docs/guide-ru/i/books-menu.jpg)
 
-И сам CRUD:
+И сами разделы CRUD:
 
-![Список раздела](https://raw.githubusercontent.com/execut/yii2-crud/master/docs/i/books-list.jpg)
+![Список книг](https://raw.githubusercontent.com/execut/yii2-crud/master/docs/guide-ru/i/books-list.jpg)
+![Форма книг](https://raw.githubusercontent.com/execut/yii2-crud/master/docs/guide-ru/i/books-form.jpg)
+![Список авторов](https://raw.githubusercontent.com/execut/yii2-crud/master/docs/guide-ru/i/authors-list.jpg)
+![Форма авторов](https://raw.githubusercontent.com/execut/yii2-crud/master/docs/guide-ru/i/authors-form.jpg)
