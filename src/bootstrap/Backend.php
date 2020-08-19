@@ -9,6 +9,7 @@ namespace execut\crud\bootstrap;
 
 use execut\navigation\Component;
 use execut\yii\Bootstrap;
+use yii\base\Application;
 use yii\base\InvalidConfigException as InvalidConfigException;
 use yii\filters\AccessRule;
 use yii\web\User;
@@ -149,10 +150,12 @@ class Backend extends Bootstrap
     public function bootstrap($app)
     {
         parent::bootstrap($app);
-        $bootstrapper = $this->getBootstrapper();
-        if ($this->isUserCan()) {
-            $bootstrapper->bootstrapForAdmin($this->getNavigation());
-        }
+        $app->on(Application::EVENT_BEFORE_REQUEST, function () {
+            $bootstrapper = $this->getBootstrapper();
+            if ($this->isUserCan()) {
+                $bootstrapper->bootstrapForAdmin($this->getNavigation());
+            }
+        });
     }
 
     /**

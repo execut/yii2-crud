@@ -12,6 +12,7 @@ use execut\crud\bootstrap\Backend;
 use execut\crud\bootstrap\Bootstrapper;
 use execut\crud\bootstrap\Module;
 use execut\navigation\Component;
+use yii\base\Application;
 use yii\web\User;
 
 /**
@@ -123,6 +124,24 @@ class BackendTest extends Unit
         $this->assertEquals($role, $bootstrap->getAdminRole());
     }
 
+    public function testBootstrapViaRequestBeginEvent() {
+        $bootstrapper = $this->getMockBuilder(Bootstrapper::class)->getMock();
+        $bootstrapper->expects($this->never())
+            ->method('bootstrapForAdmin');
+
+        $user = $this->getMockBuilder(User::class)->getMock();
+        $user->method('can')
+            ->willReturn(true);
+
+        $bootstrap = new Backend([
+            'bootstrapper' => $bootstrapper,
+            'user' => $user,
+            'adminRole' => 'adminRole',
+        ]);
+        $app = \yii::$app;
+        $bootstrap->bootstrap($app);
+    }
+
     public function testBootstrapForSimpleUser()
     {
         $bootstrapper = $this->getMockBuilder(Bootstrapper::class)->getMock();
@@ -141,6 +160,7 @@ class BackendTest extends Unit
         ]);
         $app = \yii::$app;
         $bootstrap->bootstrap($app);
+        $app->trigger(Application::EVENT_BEFORE_REQUEST);
     }
 
     public function testBootstrapForAdmin()
@@ -164,6 +184,7 @@ class BackendTest extends Unit
         ]);
         $app = \yii::$app;
         $bootstrap->bootstrap($app);
+        $app->trigger(Application::EVENT_BEFORE_REQUEST);
     }
 }
 
