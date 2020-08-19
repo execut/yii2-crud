@@ -25,6 +25,17 @@
     "codeception/module-filesystem": "^1.0",
     "codeception/verify": "~0.5.0 || ~1.1.0"
   },
+  "config": {
+    "fxp-asset": {
+      "enabled": false
+    }
+  },
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://asset-packagist.org"
+    }
+  ],
   "autoload": {
     "psr-4": {
       "execut\\crud\\": "src"
