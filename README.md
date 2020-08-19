@@ -35,4 +35,29 @@ return [
 
 ## Usage
 
-[Read readme](https://github.com/execut/yii2-crud/blob/master/docs/guide/README.md)
+Let's say you need to make a CRUD for the model [execut\books\models\Book](https://github.com/execut/yii2-books/blob/master/models/Book.php)
+To do this, just add the following lines to controller: 
+```php
+namespace execut\books\controllers;
+
+use execut\books\models\Book;
+use execut\crud\params\Crud;
+use yii\web\Controller;
+class BooksController extends Controller
+{
+    public function actions()
+    {
+        $crud = new Crud([
+            'modelClass' => Book::class,
+            'modelName' => Book::MODEL_NAME,
+        ]);
+        return $crud->actions();
+    }
+}
+```
+As a result, a full-fledged CRUD will appear for this model:
+![Books CRUD list](https://raw.githubusercontent.com/execut/yii2-crud/master/docs/guide/i/books-list.jpg)
+![Books CRUD form](https://raw.githubusercontent.com/execut/yii2-crud/master/docs/guide/i/books-form.jpg)
+
+For more details please refer to the documentation [docs/guide/README.md](https://github.com/execut/yii2-crud-fields/blob/master/docs/guide/README.md).
+Для более подробной информации обращайтесь к документации [docs/guide-ru/README.md](https://github.com/execut/yii2-crud-fields/blob/master/docs/guide-ru/README.md).

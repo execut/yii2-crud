@@ -89,13 +89,12 @@ namespace execut\books\controllers;
 use execut\books\models\Book;
 use execut\crud\params\Crud;
 use yii\filters\AccessControl;
-use yii\helpers\ArrayHelper;
 use yii\web\Controller;
 class BooksController extends Controller
 {
     public function behaviors()
     {
-        return ArrayHelper::merge(parent::behaviors(), [
+        return [
             'access' => [
                 'class' => AccessControl::class,
                 'rules' => [
@@ -105,7 +104,7 @@ class BooksController extends Controller
                     ],
                 ],
             ],
-        ]);
+        ];
     }
 
     public function actions()

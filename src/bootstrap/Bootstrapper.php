@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @author Mamaev Yuriy (eXeCUT)
  * @link https://github.com/execut
