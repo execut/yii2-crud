@@ -7,7 +7,15 @@
  */
 namespace execut\crud\bootstrap;
 
+/**
+ * Interface for CRUD module
+ * @package execut\crud
+ */
 interface Module
 {
+    /**
+     * Returns admin role string
+     * @return string
+     */
     public function getAdminRole();
 }

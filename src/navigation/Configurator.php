@@ -13,17 +13,40 @@ use execut\navigation\Configurator as ConfiguratorInterface;
 use yii\helpers\ArrayHelper;
 
 /**
- * Class Configurator
- * @package execut\crud\navigation
+ * Configurator for navigation
+ * @package execut\crud
  */
 class Configurator implements ConfiguratorInterface
 {
+    /**
+     * @var string Module id string
+     */
     public $module = null;
+    /**
+     * @var string Module label in source language for translation
+     */
     public $moduleName = null;
+    /**
+     * @var string Model label in english for translation
+     */
     public $modelName = null;
+    /**
+     * @var string Controller id string
+     */
     public $controller = null;
+    /**
+     * @var bool Is configure menu flag
+     */
     public $isAddMenuItems = true;
+    /**
+     * @var array Parent pages list
+     */
     public $pages = [];
+
+    /**
+     * Configure navigation
+     * @param Component $navigation
+     */
     public function configure(Component $navigation)
     {
         $url = '/' . $this->module . '/' . $this->controller . '/index';
@@ -82,7 +105,7 @@ class Configurator implements ConfiguratorInterface
     }
 
     /**
-     * @return string
+     * @return string Returns current module from application
      */
     protected function getCurrentModule()
     {
@@ -94,6 +117,10 @@ class Configurator implements ConfiguratorInterface
         return $currentModule;
     }
 
+    /**
+     * Returns CRUD translator
+     * @return Translator
+     */
     public function getTranslator()
     {
         return new Translator([

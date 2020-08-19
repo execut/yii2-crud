@@ -10,11 +10,14 @@ namespace execut\crud\bootstrap;
 use execut\yii\Bootstrap;
 
 /**
- * Class Console
+ * Console bootstrap for CRUD
  * @package execut\crud
  */
 class Console extends Bootstrap
 {
+    /**
+     * {@inheritdoc}
+     */
     protected $_defaultDepends = [
         'bootstrap' => [
             'yii2-actions' => [

@@ -79,10 +79,12 @@ class BackendTest extends Unit
         $this->assertEquals($module, $bootstrap->getModule());
     }
 
-    public function testGetModuleByDefault(
-
-    ) {
+    public function testGetModuleByDefault()
+    {
         $moduleId = 'module';
+        /**
+         * @var BackendTestModule $module
+         */
         $module = $this->getMockBuilder(BackendTestModule::class)->setConstructorArgs([$moduleId])->getMock();
         \yii::$app->setModule($moduleId, $module);
         $bootstrap = new Backend([
@@ -100,6 +102,9 @@ class BackendTest extends Unit
         $module->method('getAdminRole')
             ->willReturn($role);
 
+        /**
+         * @var BackendTestModule $module
+         */
         \yii::$app->setModule($moduleId, $module);
         $this->assertEquals($module, \yii::$app->getModule($moduleId));
         $bootstrap = new Backend([
@@ -168,5 +173,7 @@ class BackendTestUser extends User
 
 class BackendTestModule extends \yii\base\Module implements Module
 {
-    public function getAdminRole() {}
+    public function getAdminRole()
+    {
+    }
 }

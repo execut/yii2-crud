@@ -8,11 +8,18 @@
 namespace execut\crud;
 
 /**
- * Class Bootstrap
+ * Base bootstrap class for CRUD
  * @package execut\crud
  */
 class Bootstrap extends \execut\yii\Bootstrap
 {
+    /**
+     * {@inheritDoc}
+     */
+    public $isBootstrapI18n = true;
+    /**
+     * {@inheritDoc}
+     */
     public function getDefaultDepends()
     {
         return [
@@ -20,24 +27,6 @@ class Bootstrap extends \execut\yii\Bootstrap
                 'yii2-actions' => [
                     'class' => \execut\actions\Bootstrap::class,
                 ],
-            ],
-        ];
-    }
-
-    public function bootstrap($app)
-    {
-        parent::bootstrap($app);
-        $this->registerTranslations($app);
-    }
-
-    public function registerTranslations($app)
-    {
-        $app->i18n->translations['execut/crud/'] = [
-            'class' => 'yii\i18n\PhpMessageSource',
-            'sourceLanguage' => 'en-US',
-            'basePath' => '@vendor/execut/yii2-crud/messages',
-            'fileMap' => [
-                'execut/crud/' => 'crud.php',
             ],
         ];
     }

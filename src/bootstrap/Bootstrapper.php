@@ -15,5 +15,10 @@ use execut\navigation\Component;
  */
 interface Bootstrapper
 {
+    /**
+     * Bootstrap navigation for CRUD admin
+     * @param Component $navigation
+     * @return null
+     */
     public function bootstrapForAdmin(Component $navigation);
 }

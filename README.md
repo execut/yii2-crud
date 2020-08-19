@@ -1,6 +1,16 @@
 # Yii2 CRUD
 It's package for simple creating CRUD from configuring navigation to required controller actions in 3 steps
-without copy-paste or CRUD generators. 
+without copy-paste or CRUD generators.
+
+For license information check the [LICENSE](LICENSE.md)-file.
+
+English documentation is at [docs/guide/README.md](https://github.com/execut/yii2-crud/blob/master/docs/guide/README.md).
+
+Русская документация здесь [docs/guide-ru/README.md](https://github.com/execut/yii2-crud/blob/master/docs/guide-ru/README.md).
+
+[![Latest Stable Version](https://poser.pugx.org/execut/yii2-crud/v/stable.png)](https://packagist.org/packages/execut/yii2-crud)
+[![Total Downloads](https://poser.pugx.org/execut/yii2-crud/downloads.png)](https://packagist.org/packages/execut/yii2-crud)
+[![Build Status](https://travis-ci.com/execut/yii2-crud.svg?branch=master)](https://travis-ci.com/execut/yii2-crud) 
 
 ## Installation
 
@@ -60,4 +70,5 @@ As a result, a full-fledged CRUD will appear for this model:
 ![Books CRUD form](https://raw.githubusercontent.com/execut/yii2-crud/master/docs/guide/i/books-form.jpg)
 
 For more details please refer to the documentation [docs/guide/README.md](https://github.com/execut/yii2-crud-fields/blob/master/docs/guide/README.md).
+
 Для более подробной информации обращайтесь к документации [docs/guide-ru/README.md](https://github.com/execut/yii2-crud-fields/blob/master/docs/guide-ru/README.md).

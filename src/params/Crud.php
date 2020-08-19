@@ -13,24 +13,53 @@ use execut\actions\action\adapter\Edit;
 use execut\actions\action\adapter\EditWithRelations;
 use execut\actions\action\adapter\GridView;
 use execut\crud\Translator;
+use execut\crudFields\fields\HasManySelect2;
 use kartik\detail\DetailView;
 use yii\base\BaseObject;
 use yii\helpers\ArrayHelper;
 use yii\helpers\UnsetArrayValue;
 
 /**
- * Class Crud
- * @package execut\crud\params
+ * CRUD actions config factory
+ * @package execut\crud
  */
 class Crud extends BaseObject
 {
+    /**
+     * @var string Target model class for CRUD
+     */
     public $modelClass = null;
+    /**
+     * @var string Module id string
+     */
     public $module = null;
+    /**
+     * @var string Module name label for translations
+     */
     public $moduleName = null;
+    /**
+     * @var string Model name label for translations
+     */
     public $modelName = null;
+    /**
+     * @var array Relations list for rendering relations lists inside edit form
+     * @deprecated
+     * @see HasManySelect2
+     */
     public $relations = [];
+    /**
+     * @var string Current user role string
+     */
     public $role = null;
+    /**
+     * @var array Configuration for roles
+     */
     public $rolesConfig = [];
+
+    /**
+     * Returns default roles config
+     * @return array[]
+     */
     public function getDefaultRolesConfig()
     {
         return [
@@ -67,6 +96,10 @@ class Crud extends BaseObject
         ];
     }
 
+    /**
+     * Returns default current role CRUD actions configuration
+     * @return array
+     */
     public function getDefaultRoleConfig()
     {
         $config = $this->getDefaultRolesConfig();
@@ -77,6 +110,10 @@ class Crud extends BaseObject
         return [];
     }
 
+    /**
+     * Returns current role CRUD actions configuration
+     * @return array
+     */
     public function getRoleConfig()
     {
         $config = $this->rolesConfig;
@@ -87,6 +124,11 @@ class Crud extends BaseObject
         return [];
     }
 
+    /**
+     * Returns actions configuration of CRUD controller for model
+     * @param array $mergedActions
+     * @return array
+     */
     public function actions($mergedActions = [])
     {
         if (empty($this->relations)) {
@@ -118,6 +160,11 @@ class Crud extends BaseObject
         return $result;
     }
 
+    /**
+     * Create CRUD translator object
+     * @param null $relation
+     * @return Translator
+     */
     public function getTranslator($relation = null)
     {
         $translatorParams = [
@@ -134,6 +181,7 @@ class Crud extends BaseObject
     }
 
     /**
+     * Returns update action config
      * @return array
      */
     protected function getUpdateAdapterParams(): array
@@ -152,6 +200,10 @@ class Crud extends BaseObject
         return $updateActionParams;
     }
 
+    /**
+     * @deprecated
+     * @return array
+     */
     protected function getUpdateAdapterParamsWithRelations(): array
     {
         $relations = $this->relations;
@@ -168,6 +220,7 @@ class Crud extends BaseObject
     }
 
     /**
+     * Returns list action configuration
      * @return array
      */
     protected function getListAdapterParams($relation = null): array
@@ -175,9 +228,6 @@ class Crud extends BaseObject
         $listAdapterParams = [
             'class' => GridView::class,
             'scenario' => 'grid',
-//            'view' => [
-//                'title' => $this->getTranslator($relation)->getModelLabel(1),
-//            ],
         ];
 
         if ($relation === null) {
