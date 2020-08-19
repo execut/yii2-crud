@@ -69,6 +69,6 @@ As a result, a full-fledged CRUD will appear for this model:
 ![Books CRUD list](https://raw.githubusercontent.com/execut/yii2-crud/master/docs/guide/i/books-list.jpg)
 ![Books CRUD form](https://raw.githubusercontent.com/execut/yii2-crud/master/docs/guide/i/books-form.jpg)
 
-For more details please refer to the documentation [docs/guide/README.md](https://github.com/execut/yii2-crud-fields/blob/master/docs/guide/README.md).
+For more details please refer to the documentation [docs/guide/README.md](https://github.com/execut/yii2-crud/blob/master/docs/guide/README.md).
 
-Для более подробной информации обращайтесь к документации [docs/guide-ru/README.md](https://github.com/execut/yii2-crud-fields/blob/master/docs/guide-ru/README.md).
+Для более подробной информации обращайтесь к документации [docs/guide-ru/README.md](https://github.com/execut/yii2-crud/blob/master/docs/guide-ru/README.md).

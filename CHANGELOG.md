@@ -1,6 +1,10 @@
 eXeCUT Yii 2 CRUD extension changelog
 ==============================================
 
+0.7.2 2020-08-19
+---------------------
+- Fixed readme links
+
 0.7.1 2020-08-19
 ---------------------
 - New folders structure
