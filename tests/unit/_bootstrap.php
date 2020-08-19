@@ -8,16 +8,17 @@ defined('TEST_ENTRY_FILE') or define('TEST_ENTRY_FILE', dirname(__DIR__) . '/web
 
 defined('YII_DEBUG') or define('YII_DEBUG', true);
 
-defined('YII_ENV') or define('YII_ENV', 'test_unit');
+defined('YII_ENV') or define('YII_ENV', 'test');
 
-if (file_exists(__DIR__ . '/../../vendor/autoload.php')) {
-    require_once(__DIR__ . '/../../../../autoload.php');
-
-    require_once(__DIR__ . '/../../../../yiisoft/yii2/Yii.php');
-} else {
-    require_once(__DIR__ . '/../../../../autoload.php');
-    require_once(__DIR__ . '/../../../../yiisoft/yii2/Yii.php');
+$autoloadPath = __DIR__ . '/../../../autoload.php';
+$yiiPath = __DIR__ . '/../../../yiisoft/yii2/Yii.php';
+if (!file_exists($autoloadPath)) {//For travis
+    $autoloadPath = __DIR__ . '/../vendor/autoload.php';
+    $yiiPath = __DIR__ . '/../vendor/yiisoft/yii2/Yii.php';
 }
+
+require_once($autoloadPath);
+require_once($yiiPath);
 
 //require(__DIR__ . '/../../common/config/aliases.php');
 
