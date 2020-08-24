@@ -70,15 +70,15 @@ class Module extends \yii\base\Module implements \execut\crud\bootstrap\Module
 ```
 Можно взять готовые версии для этих моделей в нативной версии. Прежде чем использовать, замените пространство имён
 booksNative на books:
-* [execut\booksNative\models\Book](https://github.com/execut/yii2-books-native/blob/master/models/Book.php)
-* [execut\booksNative\models\Author](https://github.com/execut/yii2-books-native/blob/master/models/Author.php)
-* [execut\booksNative\models\AuthorVsBook](https://github.com/execut/yii2-books-native/blob/master/models/AuthorVsBook.php)
+* [execut\booksNative\models\Book](https://github.com/execut/yii2-books-native/blob/master/src/models/Book.php)
+* [execut\booksNative\models\Author](https://github.com/execut/yii2-books-native/blob/master/src/models/Author.php)
+* [execut\booksNative\models\AuthorVsBook](https://github.com/execut/yii2-books-native/blob/master/src/models/AuthorVsBook.php)
 
 Или тоже готовые модели, но в более компактном и функциональном варианте за счёт использования
 [yii2-crud-fields](https://github.com/execut/yii2-crud-fields):
-* [execut\books\models\Book](https://github.com/execut/yii2-books/blob/master/models/Book.php)
-* [execut\books\models\Author](https://github.com/execut/yii2-books/blob/master/models/Author.php)
-* [execut\books\models\AuthorVsBook](https://github.com/execut/yii2-books/blob/master/models/AuthorVsBook.php)
+* [execut\books\models\Book](https://github.com/execut/yii2-books/blob/master/src/models/Book.php)
+* [execut\books\models\Author](https://github.com/execut/yii2-books/blob/master/src/models/Author.php)
+* [execut\books\models\AuthorVsBook](https://github.com/execut/yii2-books/blob/master/src/models/AuthorVsBook.php)
 
 ### 3. Создаём контроллер
 Создадим контроллер [execut\books\controllers\BooksController](https://github.com/execut/yii2-books/blob/master/controllers/BooksController.php) с одним небольшим методом actions(), который объявляет все необходимые действия автоматически:
@@ -123,7 +123,7 @@ class BooksController extends Controller
 В actions() используется класс [execut\crud\params\Crud](https://github.com/execut/yii2-crud/blob/master/params/Crud.php) для автоматического формирования всех
 действий и подписей для модели modelClass с названием modelName.
 
-Если сравнивать с нативным способом реализации данного контроллера [execut\booksNative\controllers\BooksController](https://github.com/execut/yii2-books-native/blob/master/controllers/BooksController.php),
+Если сравнивать с нативным способом реализации данного контроллера [execut\booksNative\controllers\BooksController](https://github.com/execut/yii2-books-native/blob/master/src/controllers/BooksController.php),
 то мы видим, что новый [execut\books\controllers\BooksController](https://github.com/execut/yii2-books/blob/master/controllers/BooksController.php) имеет следующие преимущества:
 1. Не нужно объявлять дейcтсвия index, update и delete, они сформировались автоматически
 1. Не нужно писать никакого функционала действий по работе с моделью (index, update, delete), всё инкапсулировано в действиях компонента [execut/yii2-actions](https://github.com/execut/yii2-actions)

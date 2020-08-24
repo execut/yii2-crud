@@ -45,7 +45,7 @@ return [
 
 ## Usage
 
-Let's say you need to make a CRUD for the model [execut\books\models\Book](https://github.com/execut/yii2-books/blob/master/models/Book.php)
+Let's say you need to make a CRUD for the model [execut\books\models\Book](https://github.com/execut/yii2-books/blob/master/src/models/Book.php)
 To do this, just add the following lines to controller: 
 ```php
 namespace execut\books\controllers;

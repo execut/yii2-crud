@@ -67,14 +67,14 @@ In models for CRUDs, for books and authors, you need to declare 6 methods for th
     public function attributeLabels();
 ```
 You can take ready-made versions for these models in the native version. Change the booksNative namespace to books before using:
-* [execut\booksNative\models\Book](https://github.com/execut/yii2-books-native/blob/master/models/Book.php)
-* [execut\booksNative\models\Author](https://github.com/execut/yii2-books-native/blob/master/models/Author.php)
-* [execut\booksNative\models\AuthorVsBook](https://github.com/execut/yii2-books-native/blob/master/models/AuthorVsBook.php)
+* [execut\booksNative\models\Book](https://github.com/execut/yii2-books-native/blob/master/src/models/Book.php)
+* [execut\booksNative\models\Author](https://github.com/execut/yii2-books-native/blob/master/src/models/Author.php)
+* [execut\booksNative\models\AuthorVsBook](https://github.com/execut/yii2-books-native/blob/master/src/models/AuthorVsBook.php)
 
 Or, also ready-made models, but in a more compact and functional version by using [yii2-crud-fields](https://github.com/execut/yii2-crud-fields):
-* [execut\books\models\Book](https://github.com/execut/yii2-books/blob/master/models/Book.php)
-* [execut\books\models\Author](https://github.com/execut/yii2-books/blob/master/models/Author.php)
-* [execut\books\models\AuthorVsBook](https://github.com/execut/yii2-books/blob/master/models/AuthorVsBook.php)
+* [execut\books\models\Book](https://github.com/execut/yii2-books/blob/master/src/models/Book.php)
+* [execut\books\models\Author](https://github.com/execut/yii2-books/blob/master/src/models/Author.php)
+* [execut\books\models\AuthorVsBook](https://github.com/execut/yii2-books/blob/master/src/models/AuthorVsBook.php)
 
 ### 3. Controller creation
 Let's create a controller [execut\books\controllers\BooksController](https://github.com/execut/yii2-books/blob/master/controllers/BooksController.php) with one small actions() method that declares all the necessary actions automatically:
@@ -118,7 +118,7 @@ In behaviors(), we see that a rule is being added that prohibits access to the c
 
 Actions() uses the [execut\crud\params\Crud](https://github.com/execut/yii2-crud/blob/master/params/Crud.php) class to automatically generate all actions and signatures for the modelClass named modelName.
 
-If we compare with the native implementation of this controller [execut\booksNative\controllers\BooksController](https://github.com/execut/yii2-books-native/blob/master/controllers/BooksController.php), we see that the new [execut\books\controllers\BooksController](https://github.com/execut/yii2-books/blob/master/controllers/BooksController.php) has the following benefits:
+If we compare with the native implementation of this controller [execut\booksNative\controllers\BooksController](https://github.com/execut/yii2-books-native/blob/master/src/controllers/BooksController.php), we see that the new [execut\books\controllers\BooksController](https://github.com/execut/yii2-books/blob/master/controllers/BooksController.php) has the following benefits:
 1. There is no need to declare the index, update and delete actions, they are generated automatically
 1. There is no need to write any functionality of actions to work with the model (index, update, delete), everything is encapsulated in the actions of the component [execut/yii2-actions](https://github.com/execut/yii2-actions)
 1. No index and update views, everything is automatically declared and encapsulated by [execut/yii2-actions](https://github.com/execut/yii2-actions)
