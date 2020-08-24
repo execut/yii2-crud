@@ -55,7 +55,7 @@ class Translator extends BaseObject
      */
     protected function crudTranslate($message, $params = []): string
     {
-        $category = 'execut/crud/';
+        $category = 'execut/crud';
         $result = $this->translate($message, $params, $category);
 
         return $result;

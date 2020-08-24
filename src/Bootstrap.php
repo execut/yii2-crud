@@ -16,7 +16,7 @@ class Bootstrap extends \execut\yii\Bootstrap
     /**
      * {@inheritDoc}
      */
-    public $isBootstrapI18n = true;
+    protected $isBootstrapI18n = true;
     /**
      * {@inheritDoc}
      */
